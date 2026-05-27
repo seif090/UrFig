@@ -25,12 +25,20 @@
 
     <div class="price-summary">
       <p>Total Price: <strong>${{ totalPrice() }}</strong></p>
-      <button 
-        [disabled]="!isComplete()" 
-        (click)="addToCart()"
-        class="add-to-cart-btn">
-        Add to Cart
-      </button>
+      <div class="action-buttons">
+        <button 
+          [disabled]="!isComplete()" 
+          (click)="addToCart()"
+          class="add-to-cart-btn">
+          Add to Cart
+        </button>
+        <button 
+          [disabled]="!isComplete()"
+          (click)="saveDesign()"
+          class="save-btn">
+          Save for Later
+        </button>
+      </div>
     </div>
   </div>
 

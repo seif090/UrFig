@@ -7,6 +7,7 @@ export class OrderService {
    * Processes a new order: Validates prices server-side, checked stock, and saves to DB.
    */
   static async createOrder(orderData: {
+    userId?: string;
     customerName: string;
     customerEmail: string;
     shippingAddress: string;
@@ -60,6 +61,7 @@ export class OrderService {
 
     // 3. Create and Save the Order
     const newOrder = new Order({
+      user: orderData.userId,
       customerName: orderData.customerName,
       customerEmail: orderData.customerEmail,
       shippingAddress: orderData.shippingAddress,
@@ -92,6 +94,16 @@ export class OrderService {
 
   static async updateOrderStatus(orderId: string, status: string) {
     return await Order.findByIdAndUpdate(orderId, { status }, { new: true });
+  }
+
+  static async getOrdersByEmail(email: string) {
+    return await Order.find({ customerEmail: email })
+      .sort({ createdAt: -1 })
+      .populate('items.customKeychain.head')
+      .populate('items.customKeychain.torso')
+      .populate('items.customKeychain.legs')
+      .populate('items.customKeychain.accessory')
+      .populate('items.product');
   }
 }
 迫

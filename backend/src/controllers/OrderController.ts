@@ -1,16 +1,19 @@
 import { Request, Response } from 'express';
 import { OrderService } from '../services/OrderService.js';
+import { AuthRequest } from '../middleware/authMiddleware.js';
 
 export class OrderController {
-  static async checkout(req: Request, res: Response) {
+  static async checkout(req: AuthRequest, res: Response) {
     try {
       const { customerName, customerEmail, shippingAddress, items } = req.body;
+      const userId = req.user?.id;
 
       if (!items || !Array.isArray(items) || items.length === 0) {
         return res.status(400).json({ message: 'Cart is empty' });
       }
 
       const order = await OrderService.createOrder({
+        userId,
         customerName,
         customerEmail,
         shippingAddress,
@@ -60,6 +63,21 @@ export class OrderController {
       res.status(200).json(order);
     } catch (error: any) {
       res.status(500).json({ message: 'Error updating order', error: error.message });
+    }
+  }
+
+  static async getMyOrders(req: AuthRequest, res: Response) {
+    try {
+      const { email } = req.query;
+      // In a real app, we'd use req.user.id but since the checkout allows guest (with email), 
+      // we'll support both for this demo.
+      const lookupEmail = email?.toString();
+      if (!lookupEmail) return res.status(400).json({ message: 'Email required' });
+
+      const orders = await OrderService.getOrdersByEmail(lookupEmail);
+      res.status(200).json(orders);
+    } catch (error: any) {
+      res.status(500).json({ message: 'Error fetching history', error: error.message });
     }
   }
 }

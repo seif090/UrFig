@@ -35,5 +35,9 @@ export class OrderService {
   async updateStatus(id: string, status: string) {
     return firstValueFrom(this.http.patch<any>(`${this.API_URL}/${id}/status`, { status }));
   }
+
+  async getMyOrders(email: string) {
+    return firstValueFrom(this.http.get<any[]>(`${this.API_URL}/my-orders?email=${email}`));
+  }
 }
 迫

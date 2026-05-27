@@ -6,6 +6,7 @@ export interface IUser extends Document {
   email: string;
   password?: string;
   role: 'user' | 'admin';
+  savedDesigns: any[];
   createdAt: Date;
   comparePassword(password: string): Promise<boolean>;
 }
@@ -14,7 +15,15 @@ const UserSchema = new Schema<IUser>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true, lowercase: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ['user', 'admin'], default: 'user' }
+  role: { type: String, enum: ['user', 'admin'], default: 'user' },
+  savedDesigns: [{
+    name: String,
+    head: { type: Schema.Types.ObjectId, ref: 'LegoPart' },
+    torso: { type: Schema.Types.ObjectId, ref: 'LegoPart' },
+    legs: { type: Schema.Types.ObjectId, ref: 'LegoPart' },
+    accessory: { type: Schema.Types.ObjectId, ref: 'LegoPart' },
+    createdAt: { type: Date, default: Date.now }
+  }]
 }, { timestamps: true });
 
 // Hash password before saving

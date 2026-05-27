@@ -46,18 +46,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    // Basic cart addition for ready-made products
-    const cartItem = {
-      id: product._id,
-      type: 'ready-made' as const,
-      name: product.name,
-      price: product.price,
-      quantity: 1,
-      imageUrl: product.imageUrl,
-      productId: product._id
-    };
-    // Note: We'd need to add a generic 'addItem' to CartService, 
-    // but for now we'll simulate the logic or extend the service.
+    this.cartService.addProduct(product);
     alert(`${product.name} added to cart!`);
   }
 }

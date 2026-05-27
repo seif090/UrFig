@@ -5,11 +5,13 @@ import { OrderSuccessComponent } from './features/order-success/order-success.co
 import { AdminDashboardComponent } from './features/admin/admin-dashboard.component';
 import { ProductListComponent } from './features/shop/product-list.component';
 import { LoginComponent } from './features/auth/login.component';
+import { OrderHistoryComponent } from './features/shop/order-history.component';
 
 export const routes: Routes = [
   { path: '', component: BuilderComponent },
   { path: 'shop', component: ProductListComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'history', component: OrderHistoryComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'order-success/:id', component: OrderSuccessComponent },
   { path: 'admin', component: AdminDashboardComponent },

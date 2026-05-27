@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { OrderController } from '../controllers/OrderController.js';
+import { authenticate, isAdmin } from '../middleware/authMiddleware.js';
 
 const router = Router();
 
@@ -10,10 +11,16 @@ const router = Router();
 router.post('/checkout', OrderController.checkout);
 
 /**
+ * @route   GET /api/orders/my-orders
+ * @desc    Get order history for a specific customer
+ */
+router.get('/my-orders', OrderController.getMyOrders);
+
+/**
  * @route   GET /api/orders
  * @desc    Get all orders (Admin)
  */
-router.get('/', OrderController.listOrders);
+router.get('/', authenticate, isAdmin, OrderController.listOrders);
 
 /**
  * @route   GET /api/orders/:id

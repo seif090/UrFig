@@ -55,6 +55,30 @@ export class CartService {
   }
 
   /**
+   * Adds a ready-made product to the cart
+   */
+  addProduct(product: { _id: string, name: string, price: number, imageUrl: string }) {
+    this.cartItems.update(items => {
+      const existing = items.find(i => i.productId === product._id);
+      if (existing) {
+        return items.map(i => i.productId === product._id 
+          ? { ...i, quantity: i.quantity + 1 } 
+          : i
+        );
+      }
+      return [...items, {
+        id: crypto.randomUUID(),
+        type: 'ready-made',
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        imageUrl: product.imageUrl,
+        productId: product._id
+      }];
+    });
+  }
+
+  /**
    * Remove item from cart
    */
   removeItem(itemId: string) {

@@ -2,6 +2,8 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomizerService } from '../../core/services/customizer.service';
 import { CartService } from '../../core/services/cart.service';
+import { UserService } from '../../core/services/user.service';
+import { AuthService } from '../../core/services/auth.service';
 import { SelectedLegoPart } from '../../core/models/customizer.model';
 import { FormsModule } from '@angular/forms';
 
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 export class BuilderComponent implements OnInit {
   private customizerService = inject(CustomizerService);
   private cartService = inject(CartService);
+  private userService = inject(UserService);
+  authService = inject(AuthService);
 
   // Available parts fetched from the backend
   parts = signal<{
@@ -52,6 +56,30 @@ export class BuilderComponent implements OnInit {
   onTextChange(event: Event) {
     const text = (event.target as HTMLInputElement).value;
     this.customizerService.setCustomText(text);
+  }
+
+  async saveDesign() {
+    if (!this.authService.currentUser()) {
+      alert('Please log in to save your design!');
+      return;
+    }
+
+    const name = prompt('Name your design:', 'My Keychain');
+    if (!name) return;
+
+    const config = this.currentConfig();
+    try {
+      await this.userService.saveDesign({
+        name,
+        headId: config.head?.id,
+        torsoId: config.torso?.id,
+        legsId: config.legs?.id,
+        accessoryId: config.accessory?.id
+      });
+      alert('Design saved to your profile!');
+    } catch (err) {
+      alert('Failed to save design');
+    }
   }
 
   addToCart() {
