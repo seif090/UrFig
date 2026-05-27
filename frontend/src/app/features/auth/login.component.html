@@ -1,0 +1,31 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Welcome Back BRICK-er!</h2>
+    <p>Login to see your saved designs and orders.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="masterbuilder@lego.com">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="••••••••">
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-banner">{{ errorMessage }}</div>
+      }
+
+      <button type="submit" [disabled]="loginForm.invalid || isLoading" class="auth-btn">
+        {{ isLoading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <div class="footer-link">
+      Don't have an account? <a routerLink="/register">Register here</a>
+    </div>
+  </div>
+</div>
+迫
