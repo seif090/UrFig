@@ -25,7 +25,8 @@ export class CheckoutComponent {
     customerName: ['', [Validators.required, Validators.minLength(3)]],
     customerEmail: ['', [Validators.required, Validators.email]],
     shippingAddress: ['', [Validators.required, Validators.minLength(10)]],
-    promoCode: ['']
+    promoCode: [''],
+    paymentMethod: ['cod', Validators.required]
   });
 
   cartItems = this.cartService.items;

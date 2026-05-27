@@ -75,6 +75,9 @@
 
             <div class="total">
               <strong>${{ order.totalAmount }}</strong>
+              <div class="pay-method-badge" [class]="order.paymentMethod">
+                {{ order.paymentMethod?.replace('_', ' ') }}
+              </div>
             </div>
           </div>
 

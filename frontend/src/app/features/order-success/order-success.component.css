@@ -162,6 +162,43 @@
   font-size: 0.9rem;
   color: #666;
   line-height: 1.5;
+  border-top: 1px dashed #ddd;
+  padding-top: 1.5rem;
+}
+
+.manual-payment-notice {
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.manual-payment-notice h4 {
+  margin: 0 0 0.5rem 0;
+  color: #e65100;
+}
+
+.wa-btn {
+  display: inline-block;
+  background: #25d366;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.auto-payment-notice {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  color: #2e7d32;
+  font-weight: 500;
 }
 
 .back-home-btn {

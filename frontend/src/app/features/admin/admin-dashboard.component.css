@@ -98,6 +98,27 @@
   border-bottom: 1px solid #eee;
 }
 
+.total {
+  text-align: right;
+}
+
+.pay-method-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #eee;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.pay-method-badge.vodafone_cash { background: #e60000; color: white; }
+.pay-method-badge.instapay { background: #0072bc; color: white; }
+.pay-method-badge.cod { background: #333; color: white; }
+.pay-method-badge.card { background: #4caf50; color: white; }
+.pay-method-badge.paypal { background: #003087; color: white; }
+
 .promo-manager {
   background: white;
   padding: 2rem;

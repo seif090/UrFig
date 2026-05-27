@@ -9,11 +9,11 @@ export class OrderService {
    */
   static async createOrder(orderData: {
     userId?: string;
-    customerName: string;
     customerEmail: string;
     shippingAddress: string;
     items: any[]; // Raw items from cart
     promoCode?: string;
+    paymentMethod: 'vodafone_cash' | 'instapay' | 'cod';
   }): Promise<IOrder> {
     const processedItems: IOrderItem[] = [];
     let subtotalSum = 0;
@@ -86,10 +86,12 @@ export class OrderService {
       customerEmail: orderData.customerEmail,
       shippingAddress: orderData.shippingAddress,
       items: processedItems,
+      paymentMethod: orderData.paymentMethod,
+      paymentStatus: (orderData.paymentMethod === 'card' || orderData.paymentMethod === 'paypal') ? 'completed' : 'pending',
       discountAmount: parseFloat(discountAmount.toFixed(2)),
       promoCode: orderData.promoCode,
       totalAmount: parseFloat(finalTotal.toFixed(2)),
-      status: 'pending'
+      status: (orderData.paymentMethod === 'card' || orderData.paymentMethod === 'paypal') ? 'paid' : 'pending'
     });
 
     return await newOrder.save();

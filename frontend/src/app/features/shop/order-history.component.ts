@@ -47,6 +47,9 @@ import { UserService } from '../../core/services/user.service';
                   </div>
 
                   <div class="order-total">
+                    <div class="payment-info">
+                      <small>Method: {{ order.paymentMethod?.replace('_', ' ') | titlecase }}</small>
+                    </div>
                     <span>Total:</span>
                     <strong>\${{ order.totalAmount }}</strong>
                   </div>
@@ -122,7 +125,8 @@ import { UserService } from '../../core/services/user.service';
       display: flex; justify-content: space-between; 
       padding: 0.5rem 0; border-bottom: 1px dashed #eee;
     }
-    .order-total { padding: 1rem; background: #fffdf0; display: flex; justify-content: flex-end; gap: 1rem; align-items: center; }
+    .order-total { padding: 1rem; background: #fffdf0; display: flex; justify-content: space-between; align-items: center; }
+    .payment-info { color: #666; font-size: 0.85rem; }
     
     .designs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
     .design-card { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }

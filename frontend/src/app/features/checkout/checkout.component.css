@@ -112,6 +112,63 @@
   margin-top: 0.5rem;
 }
 
+.payment-section {
+  margin: 2rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pay-opt {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pay-opt:hover {
+  background: #f9f9f9;
+}
+
+.pay-opt input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+.opt-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.opt-content strong {
+  display: block;
+}
+
+.opt-content span {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.payment-instructions {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff3e0;
+  border-left: 4px solid #ff9800;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #e65100;
+}
+
 .form-group {
   margin-bottom: 1.5rem;
   display: flex;

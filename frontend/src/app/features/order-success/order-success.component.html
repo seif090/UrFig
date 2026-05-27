@@ -70,7 +70,19 @@
           </div>
           
           <div class="next-steps">
-            <p>We'll send a tracking link to your email once your LEGO parts are assembled and shipped!</p>
+            @if (order().paymentMethod === 'vodafone_cash' || order().paymentMethod === 'instapay') {
+              <div class="manual-payment-notice">
+                <h4>Finish your payment</h4>
+                <p>Please send the transfer screenshot and your order ID <strong>#{{ order()._id.slice(-6).toUpperCase() }}</strong> to our WhatsApp for verification.</p>
+                <a href="https://wa.me/201012345678" target="_blank" class="wa-btn">Send to WhatsApp</a>
+              </div>
+            } @else if (order().paymentMethod === 'card' || order().paymentMethod === 'paypal') {
+               <div class="auto-payment-notice">
+                <p>✅ Payment confirmed via {{ order().paymentMethod | titlecase }}.</p>
+              </div>
+            }
+            
+            <p class="shipping-notice">We'll send a tracking link to your email once your LEGO parts are assembled and shipped!</p>
             <a routerLink="/" class="back-home-btn">Continue Shopping</a>
           </div>
         </div>

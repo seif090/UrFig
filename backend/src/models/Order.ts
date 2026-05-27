@@ -22,6 +22,8 @@ export interface IOrder extends Document {
   customerEmail: string;
   shippingAddress: string;
   items: IOrderItem[];
+  paymentMethod: 'vodafone_cash' | 'instapay' | 'cod' | 'card' | 'paypal';
+  paymentStatus: 'pending' | 'completed' | 'failed';
   discountAmount?: number;
   promoCode?: string;
   totalAmount: number;
@@ -49,6 +51,8 @@ const OrderSchema = new Schema<IOrder>({
   customerEmail: { type: String, required: true },
   shippingAddress: { type: String, required: true },
   items: [OrderItemSchema],
+  paymentMethod: { type: String, enum: ['vodafone_cash', 'instapay', 'cod'], required: true },
+  paymentStatus: { type: String, enum: ['pending', 'completed', 'failed'], default: 'pending' },
   discountAmount: { type: Number, default: 0 },
   promoCode: { type: String },
   totalAmount: { type: Number, required: true },

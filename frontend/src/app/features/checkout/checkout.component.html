@@ -83,6 +83,57 @@
           }
         </div>
 
+        <div class="payment-section">
+          <h3>Payment Method</h3>
+          <div class="payment-options">
+            <label class="pay-opt">
+              <input type="radio" formControlName="paymentMethod" value="cod">
+              <div class="opt-content">
+                <strong>Cash on Delivery</strong>
+                <span>Pay when you receive the order</span>
+              </div>
+            </label>
+
+            <label class="pay-opt">
+              <input type="radio" formControlName="paymentMethod" value="vodafone_cash">
+              <div class="opt-content">
+                <strong>Vodafone Cash</strong>
+                <span>Transfer to: 01012345678</span>
+              </div>
+            </label>
+
+            <label class="pay-opt">
+              <input type="radio" formControlName="paymentMethod" value="instapay">
+              <div class="opt-content">
+                <strong>InstaPay</strong>
+                <span>Transfer to: urfig@instapay</span>
+              </div>
+            </label>
+
+            <label class="pay-opt card-opt">
+              <input type="radio" formControlName="paymentMethod" value="card">
+              <div class="opt-content">
+                <strong>Credit / Debit Card</strong>
+                <span>Visa, MasterCard, Amex</span>
+              </div>
+            </label>
+
+            <label class="pay-opt paypal-opt">
+              <input type="radio" formControlName="paymentMethod" value="paypal">
+              <div class="opt-content">
+                <strong>PayPal</strong>
+                <span>Safe & Secure payment via PayPal</span>
+              </div>
+            </label>
+          </div>
+
+          @if (checkoutForm.get('paymentMethod')?.value === 'vodafone_cash' || checkoutForm.get('paymentMethod')?.value === 'instapay') {
+            <div class="payment-instructions">
+              <p>⚠️ After transferring, please contact us on WhatsApp with your Order ID and payment screenshot for confirmation.</p>
+            </div>
+          }
+        </div>
+
         <button 
           type="submit" 
           class="submit-btn" 
