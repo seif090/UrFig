@@ -9,11 +9,12 @@ export class OrderService {
    */
   static async createOrder(orderData: {
     userId?: string;
+    customerName: string;
     customerEmail: string;
     shippingAddress: string;
     items: any[]; // Raw items from cart
     promoCode?: string;
-    paymentMethod: 'vodafone_cash' | 'instapay' | 'cod';
+    paymentMethod: 'vodafone_cash' | 'instapay' | 'cod' | 'card' | 'paypal';
   }): Promise<IOrder> {
     const processedItems: IOrderItem[] = [];
     let subtotalSum = 0;

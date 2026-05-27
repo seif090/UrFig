@@ -7,6 +7,7 @@ export interface IUser extends Document {
   password?: string;
   role: 'user' | 'admin';
   savedDesigns: any[];
+  wishlist: string[];
   createdAt: Date;
   comparePassword(password: string): Promise<boolean>;
 }
@@ -28,18 +29,18 @@ const UserSchema = new Schema<IUser>({
 }, { timestamps: true });
 
 // Hash password before saving
-UserSchema.pre('save', async function(next) {
+UserSchema.pre<IUser>('save', async function(next) {
   if (!this.isModified('password')) return next();
   try {
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password!, salt);
+    this.password = await bcrypt.hash(this.password as string, salt);
     next();
   } catch (err: any) {
     next(err);
   }
 });
 
-UserSchema.methods.comparePassword = async function(password: string): Promise<boolean> {
+UserSchema.methods.comparePassword = async function(this: IUser, password: string): Promise<boolean> {
   return await bcrypt.compare(password, this.password || '');
 };
 

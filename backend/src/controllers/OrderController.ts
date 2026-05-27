@@ -36,7 +36,7 @@ export class OrderController {
   static async getOrderDetails(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const order = await OrderService.getOrderById(id);
+      const order = await OrderService.getOrderById(id as string);
       
       if (!order) {
         return res.status(404).json({ message: 'Order not found' });
@@ -61,7 +61,7 @@ export class OrderController {
     try {
       const { id } = req.params;
       const { status } = req.body;
-      const order = await OrderService.updateOrderStatus(id, status);
+      const order = await OrderService.updateOrderStatus(id as string, status);
       res.status(200).json(order);
     } catch (error: any) {
       res.status(500).json({ message: 'Error updating order', error: error.message });
