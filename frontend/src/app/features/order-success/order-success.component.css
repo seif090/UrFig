@@ -1,0 +1,196 @@
+.success-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.success-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.header {
+  background: #f8fff9;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #eef5ee;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  margin: 0;
+  color: #2e7d32;
+}
+
+.order-grid {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.items-section {
+  flex: 1.5;
+  padding: 2rem;
+  min-width: 300px;
+}
+
+.info-section {
+  flex: 1;
+  padding: 2rem;
+  background: #fafafa;
+  border-left: 1px solid #eee;
+  min-width: 250px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Mini Preview for custom keychains */
+.item-visual {
+  width: 80px;
+  height: 80px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mini-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mini-preview img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 0;
+}
+
+.p-legs { z-index: 1; bottom: 5%; }
+.p-torso { z-index: 2; bottom: 30%; }
+.p-head { z-index: 3; bottom: 55%; }
+
+.product-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  display: block;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.item-info small {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.engraving {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #007bff;
+  font-style: italic;
+}
+
+.price-row {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.item-subtotal {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.total-summary {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.total-summary .row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.grand-total {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #ddd;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.info-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.info-card p {
+  margin: 0.5rem 0;
+}
+
+.next-steps {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.back-home-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: #ffcf00;
+  color: black;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.status-msg {
+  text-align: center;
+  padding: 5rem;
+  font-size: 1.2rem;
+}
+
+.status-msg.error {
+  color: #d93025;
+}
+
+@media (max-width: 768px) {
+  .info-section {
+    border-left: none;
+    border-top: 1px solid #eee;
+  }
+}
+迫

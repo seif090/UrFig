@@ -45,11 +45,9 @@ export class CheckoutComponent {
       const response = await this.orderService.placeOrder(orderData);
       
       this.cartService.clear();
-      alert('Order placed successfully! Order ID: ' + response.orderId);
       
-      // Navigate to a success page or home
-      // this.router.navigate(['/order-success', response.orderId]);
-      this.router.navigate(['/']);
+      // Navigate to success page with the order ID
+      this.router.navigate(['/order-success', response.orderId]);
     } catch (error) {
       console.error('Checkout failed', error);
       alert('Failed to place order. Please try again.');

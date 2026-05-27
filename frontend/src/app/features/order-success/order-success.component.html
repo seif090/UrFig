@@ -1,0 +1,81 @@
+<div class="success-container">
+  @if (loading()) {
+    <div class="status-msg">Loading your order details...</div>
+  } @else if (error()) {
+    <div class="status-msg error">{{ error() }}</div>
+  } @else if (order()) {
+    <div class="success-card">
+      <div class="header">
+        <div class="success-icon">✅</div>
+        <h1>Order Confirmed!</h1>
+        <p>Thank you, {{ order().customerName }}. Your order <strong>#{{ order()._id.slice(-6).toUpperCase() }}</strong> has been placed.</p>
+      </div>
+
+      <div class="order-grid">
+        <!-- Order Items -->
+        <div class="items-section">
+          <h3>Items Ordered</h3>
+          @for (item of order().items; track $index) {
+            <div class="order-item">
+              <div class="item-visual">
+                @if (item.customKeychain) {
+                  <div class="mini-preview">
+                    <img [src]="item.customKeychain.legs.imageUrl" class="p-legs">
+                    <img [src]="item.customKeychain.torso.imageUrl" class="p-torso">
+                    <img [src]="item.customKeychain.head.imageUrl" class="p-head">
+                  </div>
+                } @else if (item.product) {
+                  <img [src]="item.product.imageUrl" class="product-img">
+                }
+              </div>
+              <div class="item-info">
+                @if (item.customKeychain) {
+                  <span class="item-name">Custom Lego Keychain</span>
+                  <small>{{ item.customKeychain.head.name }} + {{ item.customKeychain.torso.name }} + {{ item.customKeychain.legs.name }}</small>
+                  @if (item.customKeychain.customText) {
+                    <div class="engraving">Engraving: "{{ item.customKeychain.customText }}"</div>
+                  }
+                } @else {
+                  <span class="item-name">{{ item.product.name }}</span>
+                }
+                <div class="price-row">Qty: {{ item.quantity }} × ${{ item.customKeychain?.price || item.product?.price }}</div>
+              </div>
+              <div class="item-subtotal">${{ item.subtotal }}</div>
+            </div>
+          }
+
+          <div class="total-summary">
+            <div class="row">
+              <span>Subtotal</span>
+              <span>${{ order().totalAmount }}</span>
+            </div>
+            <div class="row">
+              <span>Shipping</span>
+              <span>FREE</span>
+            </div>
+            <div class="row grand-total">
+              <span>Total Paid</span>
+              <span>${{ order().totalAmount }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Info -->
+        <div class="info-section">
+          <h3>Shipping Details</h3>
+          <div class="info-card">
+            <p><strong>Recipient:</strong> {{ order().customerName }}</p>
+            <p><strong>Email:</strong> {{ order().customerEmail }}</p>
+            <p><strong>Address:</strong><br>{{ order().shippingAddress }}</p>
+          </div>
+          
+          <div class="next-steps">
+            <p>We'll send a tracking link to your email once your LEGO parts are assembled and shipped!</p>
+            <a routerLink="/" class="back-home-btn">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+迫
