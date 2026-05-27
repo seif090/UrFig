@@ -7,6 +7,7 @@ import customizerRoutes from './routes/customizerRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 dotenv.config();
 
@@ -28,5 +29,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/customizer', customizerRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/admin', adminRoutes);
 
 export default app;

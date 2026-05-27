@@ -10,6 +10,10 @@
   padding-bottom: 1rem;
 }
 
+.admin-tools {
+  margin-bottom: 3rem;
+}
+
 .order-card {
   background: white;
   border-radius: 12px;

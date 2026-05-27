@@ -4,6 +4,10 @@
     <p>Manage pending orders and view custom LEGO assembly instructions.</p>
   </div>
 
+  <div class="admin-tools">
+    <app-part-upload></app-part-upload>
+  </div>
+
   @if (loading()) {
     <div class="status-msg">Fetching orders...</div>
   } @else {
